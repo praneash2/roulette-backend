@@ -20,7 +20,14 @@ app.get('/', (req, res) => {
 app.use('/auth',user);
 app.use('/bet',bet);
 app.use('/spin',spin);
-// Start the server
+
+//POC:sse
+app.get("/sse",(req,res)=>{
+    res.setHeader("Content-Type", "text/event-stream");
+    let value="hi hi"
+    res.write(`data: ${value}\n\n`);
+})
+//POC:sse
 
 let PORT=process.env.PORT||5000;
 

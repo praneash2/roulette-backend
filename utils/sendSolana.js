@@ -116,11 +116,9 @@ export const validateTransactionSignature = async (signature) => {
 		"confirmed"
 	);
 	
-	return new Promise(resolve=>setTimeout(async()=>{
-		const transactionDetails = await getTransactionDetails(signature, connection);
-		// const {sender,amount}=extractSenderAndAmount(transactionDetails);
-		resolve(sender);
-	},0));
+	const transactionDetails = await getTransactionDetails(signature, connection);
+		const {sender,amount}=extractSenderAndAmount(transactionDetails);
+		return {address:sender,amount:amount/LAMPORTS_PER_SOL};
 	
 
 };
